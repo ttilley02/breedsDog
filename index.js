@@ -2,7 +2,7 @@
 
 //Calls on the entire cast of functions to create the dog images specified by user input
 function getDogImage(dogBreed) {
-  fetch(' https://dog.ceo/api/breed/'+dogBreed+'/images/random')
+  fetch('https://dog.ceo/api/breed/'+dogBreed+'/images/random')
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
