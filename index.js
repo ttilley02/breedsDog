@@ -15,7 +15,7 @@ function displayResults(responseJson) {
   console.log(responseJson);
   $('.placeholder').html('');
  
-  if(responseJson.status == "success"){
+  if(responseJson.status === "success"){
     $('.placeholder').append(`<img src='${responseJson.message}' class='results-img' alt='randomDogImage'>`)
   }
   else{
@@ -45,3 +45,4 @@ $(function() {
   console.log('App loaded! Waiting for submit!');
   watchForm();
 });
+
