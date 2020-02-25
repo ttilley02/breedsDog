@@ -18,7 +18,7 @@ function displayResults(responseJson) {
   if(responseJson.status === 'success'){
     $('.placeholder').append(`<img src='${responseJson.message}' class='results-img' alt='randomDogImage'>`)
   }
-  else ifresponseJson.status === 'error'){
+  else if(responseJson.status === 'error'){
     $('.placeholder').append(`<div id='errorMessage'>${responseJson.message}</div>`)
     alert('No doggy data found!.  Please try again!');
   }
