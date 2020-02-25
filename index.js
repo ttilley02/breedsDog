@@ -14,8 +14,7 @@ function getDogImage(dogBreed) {
 function displayResults(responseJson) {
   console.log(responseJson);
   $('.placeholder').html('');
-  //creates dog collage for the nmber of dogs specified by the user
-  $('#errorMessage').replaceWith(`<img src=''>`)
+ 
   if(responseJson.status == "success"){
     $('.placeholder').append(`<img src='${responseJson.message}' class='results-img' alt='randomDogImage'>`)
   }
@@ -24,7 +23,6 @@ function displayResults(responseJson) {
     alert('No doggy data found!.  Please try again!');
   }
   
-
   
 
   //display the results section
