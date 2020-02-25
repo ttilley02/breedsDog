@@ -19,8 +19,8 @@ function displayResults(responseJson) {
     $('.placeholder').append(`<img src='${responseJson.message}' class='results-img' alt='randomDogImage'>`)
   }
   else if(responseJson.status === 'error'){
-    $('.placeholder').append(`<div id='errorMessage'>${responseJson.message}</div>`)
-    alert('No doggy data found!.  Please try again!');
+   $('.placeholder').append(`<p id='errorMessage'>${responseJson.message}</p>`)
+   alert('No doggy data found!.  Please try again!');
   }
   
   
@@ -45,4 +45,3 @@ $(function() {
   console.log('App loaded! Waiting for submit!');
   watchForm();
 });
-
