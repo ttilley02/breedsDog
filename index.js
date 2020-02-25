@@ -13,14 +13,13 @@ function getDogImage(dogBreed) {
 
 function displayResults(responseJson) {
   console.log(responseJson);
-  $('.placeholder').html('');
  
   if(responseJson.status === 'success'){
-    $('.placeholder').append(`<img src='${responseJson.message}' class='results-img' alt='randomDogImage'>`)
+    $('.placeholder').replaceWith(`<img src='${responseJson.message}' class='placeholder' alt='randomDogImage'>`)
   }
   else if(responseJson.status === 'error'){
-   $('.placeholder').append(`<p id='errorMessage'>${responseJson.message}</p>`)
-   alert('No doggy data found!.  Please try again!');
+    $('.placeholder').replaceWith(`<div class='placeholder id='errorMessage'>${responseJson.message}</div>`)
+    alert('No doggy data found!.  Please try again!');
   }
   
   
