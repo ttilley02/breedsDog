@@ -1,30 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <title>Dog API exercise 2</title>
+'use strict';
 
-</head>
-<body>
-    <div class="container">
-        <h1>Dog API: Find the Breed of your Choice!</h1>
-        <form>
-          <input type="text" name="howManyDogs" class="js-dogNumber" placeholder="Type in a breed">
-          <input type="submit" value="Get a dog pic!">
-        </form>
-        <section class="results hidden">
-          <h2>WOOF!</h2>
-          <div class='placeholder'>
-          <img class="results-img" alt=" ">
-          </div>
-        </section>
-    </div>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-  <script src="//code.jquery.com/jquery.min.js"></script>
-  <script type="text/javascript" src="index.js"></script>
-</body>
-</html>
+//Calls on the entire cast of functions to create the dog images specified by user input
+function getDogImage(dogBreed) {
+  fetch(' https://dog.ceo/api/breed/'+dogBreed+'/images/random')
+    .then(response => response.json())
+    .then(responseJson => 
+      displayResults(responseJson))
+    .catch(error => alert('That breed does not exist.  Please try again!'));
+  
+}
+
+
+function displayResults(responseJson) {
+  console.log(responseJson);
+  $('.placeholder').html('');
+ 
+  if(responseJson.status === 'success'){
+    $('.placeholder').append(`<img src='${responseJson.message}' class='results-img' alt='randomDogImage'>`)
+  }
+  else if(responseJson.status === 'error'){
+   $('.placeholder').append(`<p id='errorMessage'>${responseJson.message}</p>`)
+   alert('No doggy data found!.  Please try again!');
+  }
+  
+  
+
+  //display the results section
+  $('.results').removeClass('hidden');
+}
+
+//grabs input (hopefully a intger 1-50) from user
+function watchForm() {
+  $('form').submit(event => {
+    event.preventDefault();
+    console.log('WatchForm has ran!');
+    let dogType = $('.js-dogNumber').val();
+    getDogImage(dogType);
+  });
+}
+
+
+
+$(function() {
+  console.log('App loaded! Waiting for submit!');
+  watchForm();
+});
+
